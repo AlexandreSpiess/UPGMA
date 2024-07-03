@@ -6,31 +6,26 @@ import src.dendrogram as dendrogram
 def main():
     print("Début du programme principal")
 
-    labels = ['A', 'B', 'C', 'D']
+    labels = ['1', '2', '3', '4','5','6']
     data = [[],
-            [5],
-            [4, 7],
-            [7, 10, 7]]
+            [6],
+            [14, 14],
+            [15, 17, 14],
+            [12, 12, 10, 11],
+            [13, 15, 12, 8, 11]]
 
     data = [[float(element) for element in row] for row in data]
     print(f"labels : {labels}")
-    print(f"data : \n{data}")
+    for s in data:
+        print(s)
 
     ####################################################################################################################
 
     umpga = UPGMA.UPGMA(data, labels)
 
-    print("#"*29)
-
-    umpga.compute()
-
-    print("#" * 29)
-
-    umpga.compute()
-
-    print("#" * 29)
-
-    umpga.compute()
+    while len(umpga.labels) > 1:
+        print("#" * 29)
+        umpga.compute()
 
     dendrogram.plot(umpga.dist,labels)
 

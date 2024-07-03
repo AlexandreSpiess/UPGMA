@@ -38,7 +38,6 @@ class UPGMA(object):
         row = []
 
         for i in range(0, x):
-
             sizeA = len(self.labels[x]) * len(self.labels[i])
             sizeB = len(self.labels[y]) * len(self.labels[i])
 
@@ -69,7 +68,7 @@ class UPGMA(object):
 
         self.tab.append(row)
 
-    def computeDistanceMatrix(self, index):
+    def computeDendrogramMatrix(self, index):
         x, y = index
 
         if y < x:
@@ -79,10 +78,8 @@ class UPGMA(object):
 
         for i in self.labels_rep[x]:
             for j in self.labels_rep[y]:
-                self.dist[i,j] = dist
+                self.dist[i, j] = dist
                 self.dist[j, i] = dist
-
-
 
     def join_labels(self, index):
         x, y = index
@@ -100,17 +97,16 @@ class UPGMA(object):
 
     def compute(self):
 
-        index = self.min()
+        index = self.min()  # find the minimum
 
-        self.computeDistanceMatrix(index)
+        self.computeDendrogramMatrix(index)  # compute the matrix for the dendrogram
 
-        self.join_tabels(index)
+        self.join_tabels(index)  # compute the distance matrix
 
         self.join_labels(index)
 
-        print(index)
-        print(self.tab)
-        print(self.labels_rep)
-        print(self.labels)
-        print(self.dist)
-
+        # print
+        print(f"index : {index}")
+        print(f"labels : {self.labels}")
+        for s in self.tab:
+            print(s)

@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage
 from scipy.spatial.distance import squareform
 
+
 def plot(tab, labels):
     # Step 2: Compute the linkage matrix
     Z = linkage(squareform(tab), method='single')  # You can use 'single', 'complete', 'average', etc.
